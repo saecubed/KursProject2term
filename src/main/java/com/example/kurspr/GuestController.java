@@ -12,12 +12,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.example.kurspr.MainApplication.table_quotes;
 
 public class GuestController implements Initializable {
     @FXML
@@ -38,7 +39,7 @@ public class GuestController implements Initializable {
     @FXML
     private TableColumn<Quote, Integer> subject_id;
 
-    Quotes table_quotes = new Quotes();
+
     ObservableList<Quote> guest_quotes = FXCollections.observableArrayList(table_quotes.quotes);
 
     @FXML

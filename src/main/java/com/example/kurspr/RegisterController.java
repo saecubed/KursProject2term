@@ -10,10 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.*;
-
+import static com.example.kurspr.MainApplication.table_users;
 
 public class RegisterController {
     private Stage stage;
@@ -42,7 +41,7 @@ public class RegisterController {
     void register(ActionEvent event) {
         String login = loginField.getText();
         String password = passwordField.getText();
-        /*
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 //
@@ -50,23 +49,35 @@ public class RegisterController {
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
 //
-            //Statement statement = connection.createStatement();
+            String query = "INSERT INTO users (id, login, password, role_id) VALUES (?, ?, ?, ?);";
+
+            try {
+                PreparedStatement statement = connection.prepareStatement(query,
+                        Statement.RETURN_GENERATED_KEYS);
+                statement.setNull(1, Types.INTEGER);
+                statement.setString(2, login);
+                statement.setString(3, password);
+                statement.setInt(4, 3);
+                statement.execute();
+
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                int genKey = -1;
+                if (generatedKeys.next()) {
+                    genKey = generatedKeys.getInt(1);
+                }
+                connection.close();
+                table_users.users.add(new User(genKey,login,password,3));
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
 
-            String query = new StringBuilder()
-                    .append("INSERT INTO users (");
-            PreparedStatement statement = connection.prepareStatement(query,
-                    Statement.RETURN_GENERATED_KEYS);
-            statement.setNull(1, Types.INTEGER);
-            ResultSet result = statement.executeQuery(query);
-//
             connection.close();
         }
         catch(Exception e){
             System.out.println(e);
         }
-
-         */
     }
 
     @FXML

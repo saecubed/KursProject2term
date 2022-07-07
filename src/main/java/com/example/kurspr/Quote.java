@@ -9,12 +9,12 @@ public class Quote {
     public int publisher_id;
 
     public Quote(int id, String quote, int professor_id, int subject_id, String date, int publisher_id) {
-        this.id=id;
-        this.quote=quote;
-        this.professor_id=professor_id;
-        this.subject_id=subject_id;
-        this.date=date;
-        this.publisher_id=publisher_id;
+        this.id = id;
+        this.quote = quote;
+        this.professor_id = professor_id;
+        this.subject_id = subject_id;
+        this.date = date;
+        this.publisher_id = publisher_id;
     }
 
     public String getQuote(){
