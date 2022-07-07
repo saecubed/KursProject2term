@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kurspr.MainController">
+   <children>
+      <Button fx:id="authButton" layoutX="148.0" layoutY="93.0" mnemonicParsing="false" onAction="#switchToAuth" text="Авторизоваться" />
+      <Button fx:id="guestButton" layoutX="149.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchToGuest" text="Войти как гость" />
+      <Button fx:id="registerButton" layoutX="136.0" layoutY="272.0" mnemonicParsing="false" onAction="#switchToRegister" text="Зарегистрироваться" />
+   </children>
+</AnchorPane>
