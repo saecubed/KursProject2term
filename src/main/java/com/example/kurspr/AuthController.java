@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static com.example.kurspr.MainApplication.mainStage;
 
 public class AuthController {
 

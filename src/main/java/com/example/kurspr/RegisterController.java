@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.sql.*;
 import static com.example.kurspr.MainApplication.table_users;
@@ -24,6 +26,9 @@ public class RegisterController {
 
     @FXML
     private Button backToMain;
+
+    @FXML
+    private Label regOk;
 
     @FXML
     private TextField loginField;
@@ -78,6 +83,7 @@ public class RegisterController {
         catch(Exception e){
             System.out.println(e);
         }
+        regOk.setText("Вы успешно зарегистрированы! Войдите в аккаунт через главное меню");
     }
 
     @FXML
