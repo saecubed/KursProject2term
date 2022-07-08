@@ -31,7 +31,7 @@ public class ProfileController {
 
     @FXML
     void switchToCL(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("enteredAuthScr.fxml"));
+        root = FXMLLoader.load(getClass().getResource("changeLoginScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);
         stage.setScene(scene);
@@ -40,7 +40,7 @@ public class ProfileController {
 
     @FXML
     void switchToCP(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("enteredAuthScr.fxml"));
+        root = FXMLLoader.load(getClass().getResource("changePasswordScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);
         stage.setScene(scene);
