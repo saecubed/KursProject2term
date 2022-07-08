@@ -97,6 +97,8 @@ public class RegisterController {
             System.out.println(e);
         }
         regOk.setText("Вы успешно зарегистрированы! Войдите в аккаунт через главное меню");
+        loginField.setText("");
+        passwordField.setText("");
     }
 
     @FXML
