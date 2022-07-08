@@ -65,7 +65,6 @@ public class RegisterController {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
              */
             int count = -1;
             Statement stat = connection.createStatement();
@@ -76,6 +75,9 @@ public class RegisterController {
 
             if (count !=0) {
                 regOk.setText("Этот логин занят");
+            }
+            else if (login.equals("") || password.equals("")) {
+                regOk.setText("Введите логин и пароль");
             }
             else{
                 String query = "INSERT INTO users (id, login, password, role_id) VALUES (?, ?, ?, ?);";

@@ -39,29 +39,34 @@ public class ChangePasswordController {
     @FXML
     void setNewPassword(ActionEvent event) {
         String new_password = newPasswordField.getText();
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
-                    "std_1987_kurpr", "12345678");
-//
-            String upd_query = "UPDATE users SET password = ? WHERE id = " + id + ";";
-            try {
-                PreparedStatement upd_statement = connection.prepareStatement(upd_query);
-                upd_statement.setString(1, new_password);
-                upd_statement.execute();
-                connection.close();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            message.setText("Пароль успешно изменен");
-            newPasswordField.setText(" ");
-            connection.close();
+        if (new_password.equals("")) {
+            message.setText("Введите пароль");
         }
-        catch(Exception e){
-            System.out.println(e);
+        else {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+//
+                Connection connection = DriverManager.getConnection(
+                        "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
+                        "std_1987_kurpr", "12345678");
+//
+                String upd_query = "UPDATE users SET password = ? WHERE id = " + id + ";";
+                try {
+                    PreparedStatement upd_statement = connection.prepareStatement(upd_query);
+                    upd_statement.setString(1, new_password);
+                    upd_statement.execute();
+                    connection.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                message.setText("Пароль успешно изменен");
+                newPasswordField.setText(" ");
+                connection.close();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
         }
     }
 

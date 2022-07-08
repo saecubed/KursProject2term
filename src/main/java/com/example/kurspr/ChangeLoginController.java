@@ -55,6 +55,9 @@ public class ChangeLoginController {
             if (count != 0) {
                 message.setText("Этот логин уже занят");
             }
+            else if (new_login.equals("")) {
+                message.setText("Введите логин");
+            }
             else{
                 String upd_query = "UPDATE users SET login = ? WHERE id = " + id + ";";
                 try {
