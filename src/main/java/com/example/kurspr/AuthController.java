@@ -43,7 +43,7 @@ public class AuthController {
 
 
     @FXML
-    public void enterButtonClicked(ActionEvent actionEvent){
+    public void enterButtonClicked(ActionEvent event) throws IOException {
         String login = loginField.getText();
         String password = passwordField.getText();
         int id = -1;
@@ -66,10 +66,11 @@ public class AuthController {
             System.out.println(e);
         }
         if (id == -1) {
-            authFailed.setText("Введенные данные некорректны. Попробуйте еще раз");
+            authFailed.setText("Введенные данные некорректны");
         }
-        else authFailed.setText("Все ок");
-
+        else {
+            switchToEntered(event);
+        }
     }
 
     @FXML
@@ -80,4 +81,14 @@ public class AuthController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    void switchToEntered(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("mainScr.fxml"));
+        stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
