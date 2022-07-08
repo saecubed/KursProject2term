@@ -12,6 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 public class AuthController {
@@ -19,6 +23,9 @@ public class AuthController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    @FXML
+    private Label authFailed;
     @FXML
     private Button enterButton;
 
@@ -39,6 +46,30 @@ public class AuthController {
     public void enterButtonClicked(ActionEvent actionEvent){
         String login = loginField.getText();
         String password = passwordField.getText();
+        int id = -1;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
+                    "std_1987_kurpr", "12345678");
+//
+            Statement statement = connection.createStatement();
+            String query = "SELECT id FROM users WHERE login = '" + login + "' AND password = '" + password + "';";
+            ResultSet result = statement.executeQuery(query);
+            result.next();
+            id = result.getInt("id");
+            connection.close();
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        if (id == -1) {
+            authFailed.setText("Введенные данные некорректны. Попробуйте еще раз");
+        }
+        else authFailed.setText("Все ок");
+
     }
 
     @FXML
