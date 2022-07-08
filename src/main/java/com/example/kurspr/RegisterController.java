@@ -71,8 +71,8 @@ public class RegisterController {
 
                 //////////
                 Statement get_ver_id = connection.createStatement();
-                String query_ver = "SELECT verificator_id FROM \n" +
-                        "(SELECT verificator_id, COUNT(controlled_id) FROM verificators GROUP BY verificator_id DESC LIMIT 1) AS ver;";
+                String query_ver = "SELECT verificator_id FROM (SELECT verificator_id, COUNT(controlled_id) " +
+                        "FROM verificators GROUP BY verificator_id ORDER BY COUNT(controlled_id) LIMIT 1) AS ver;";
                 ResultSet result;
                 result = get_ver_id.executeQuery(query_ver);
                 result.next();
