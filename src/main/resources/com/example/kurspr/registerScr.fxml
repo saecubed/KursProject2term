@@ -13,6 +13,6 @@
       <TextField fx:id="loginField" layoutX="125.0" layoutY="74.0" />
       <TextField fx:id="passwordField" layoutX="125.0" layoutY="167.0" />
       <Button fx:id="backToMain" layoutX="143.0" layoutY="379.0" mnemonicParsing="false" onAction="#switchToMain" text="На главный экран" />
-      <Label fx:id="regOk" layoutX="80.0" layoutY="279.0" prefHeight="88.0" prefWidth="240.0" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="regOk" layoutX="125.0" layoutY="276.0" prefHeight="88.0" prefWidth="240.0" textAlignment="CENTER" wrapText="true" />
    </children>
 </AnchorPane>
