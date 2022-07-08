@@ -84,7 +84,7 @@ public class AuthController {
 
     @FXML
     void switchToEntered(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("mainScr.fxml"));
+        root = FXMLLoader.load(getClass().getResource("enteredAuthScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);
         stage.setScene(scene);
