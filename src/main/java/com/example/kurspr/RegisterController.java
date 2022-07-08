@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.sql.*;
@@ -55,7 +54,6 @@ public class RegisterController {
                     "std_1987_kurpr", "12345678");
 //
             String query = "INSERT INTO users (id, login, password, role_id) VALUES (?, ?, ?, ?);";
-
             try {
                 PreparedStatement statement = connection.prepareStatement(query,
                         Statement.RETURN_GENERATED_KEYS);
@@ -70,6 +68,21 @@ public class RegisterController {
                 if (generatedKeys.next()) {
                     genKey = generatedKeys.getInt(1);
                 }
+
+                //////////
+                Statement get_ver_id = connection.createStatement();
+                String query_ver = "SELECT verificator_id FROM \n" +
+                        "(SELECT verificator_id, COUNT(controlled_id) FROM verificators GROUP BY verificator_id DESC LIMIT 1) AS ver;";
+                ResultSet result;
+                result = get_ver_id.executeQuery(query_ver);
+                result.next();
+                int ver_id = result.getInt("verificator_id");
+                //////////
+
+                //"INSERT INTO verificators (verificator_id, controlled_id) VALUES (?,?);"
+                Statement statement1 = connection.createStatement();
+                statement1.executeUpdate("INSERT INTO verificators (verificator_id, controlled_id) VALUES (" + ver_id + ", " + genKey + ");");
+                /////////
                 connection.close();
                 table_users.users.add(new User(genKey,login,password,3));
 
