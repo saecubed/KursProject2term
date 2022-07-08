@@ -14,31 +14,31 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
-public class ChangeLoginController {
+
+public class ChangePasswordController {
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
-    private Button OkNewLogin;
+    private Button OkNewPassword;
 
     @FXML
     private Button backToProfile;
 
     @FXML
-    private Label enterLoginText;
+    private Label enterPasswordText;
 
     @FXML
     private Label message;
 
     @FXML
-    private TextField newLoginField;
+    private TextField newPasswordField;
 
     public static int id = com.example.kurspr.ProfileController.id;
 
     @FXML
-    void setNewLogin(ActionEvent event) {
-        String new_login = newLoginField.getText();
-        int count = -1;
+    void setNewPassword(ActionEvent event) {
+        String new_password = newPasswordField.getText();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 //
@@ -46,35 +46,23 @@ public class ChangeLoginController {
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
 //
-            Statement statement = connection.createStatement();
-            String query = "SELECT COUNT(id) FROM users WHERE login = '" + new_login + "';";
-            ResultSet result = statement.executeQuery(query);
-            result.next();
-            count = result.getInt("COUNT(id)");
-            //connection.close();
-            if (count != 0) {
-                message.setText("Этот логин уже занят");
-            }
-            else{
-                String upd_query = "UPDATE users SET login = ? WHERE id = " + id + ";";
-                try {
-                    PreparedStatement upd_statement = connection.prepareStatement(upd_query);
-                    upd_statement.setString(1, new_login);
-                    upd_statement.execute();
-                    connection.close();
+            String upd_query = "UPDATE users SET password = ? WHERE id = " + id + ";";
+            try {
+                PreparedStatement upd_statement = connection.prepareStatement(upd_query);
+                upd_statement.setString(1, new_password);
+                upd_statement.execute();
+                connection.close();
 
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                message.setText("Логин успешно изменен");
-                newLoginField.setText(" ");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
+            message.setText("Пароль успешно изменен");
+            newPasswordField.setText(" ");
             connection.close();
         }
         catch(Exception e){
             System.out.println(e);
         }
-
     }
 
     @FXML
