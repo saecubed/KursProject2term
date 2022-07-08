@@ -48,6 +48,8 @@ public class EnteredAuthController implements Initializable {
     @FXML
     private Button profileManagement;
 
+    public static int id = com.example.kurspr.AuthController.id;
+
     ObservableList<Quote> guest_quotes = FXCollections.observableArrayList(table_quotes.quotes);
 
     @FXML
@@ -60,13 +62,21 @@ public class EnteredAuthController implements Initializable {
     }
 
     @FXML
-    void switchToQM(ActionEvent event) {
-
+    void switchToQM(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("authScr.fxml"));
+        stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void switchToPM(ActionEvent event) {
-
+    void switchToPM(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("profileScr.fxml"));
+        stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override

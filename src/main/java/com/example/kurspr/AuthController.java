@@ -41,12 +41,14 @@ public class AuthController {
     @FXML
     private TextField passwordField;
 
+    public static int id;
+
 
     @FXML
     public void enterButtonClicked(ActionEvent event) throws IOException {
         String login = loginField.getText();
         String password = passwordField.getText();
-        int id = -1;
+        id = -1;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
