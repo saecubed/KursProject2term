@@ -103,7 +103,9 @@ public class ChangeQuoteController implements Initializable{
                     message.setText("Введите корректное значение ID для доступной вам записи");
                 }
                 else {
-                    root = FXMLLoader.load(getClass().getResource("pickQuoteChange.fxml"));
+                    com.example.kurspr.PickQuoteChangeController.id = id;
+                    com.example.kurspr.PickQuoteChangeController.qt_id = Integer.parseInt(change_id);
+                    root = FXMLLoader.load(getClass().getResource("pickQuoteChangeScr.fxml"));
                     stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
                     scene = new Scene(root);
                     stage.setScene(scene);
