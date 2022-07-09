@@ -31,7 +31,7 @@ public class AddQuoteController  {
     private DatePicker datePicker;
 
     @FXML
-    private Button backToAuth;
+    private Button backToQM;
 
     @FXML
     private Label dateText;
@@ -118,8 +118,8 @@ public class AddQuoteController  {
     }
 
     @FXML
-    void switchToEnteredAuth(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("enteredAuthScr.fxml"));
+    void switchToQM(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("quotesManagingScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);
         stage.setScene(scene);
