@@ -40,8 +40,13 @@ public class QuotesManagingController {
     }
 
     @FXML
-    void switchToChangeQuote(ActionEvent event) {
-
+    void switchToChangeQuote(ActionEvent event) throws IOException {
+        com.example.kurspr.ChangeQuoteController.id = id;
+        root = FXMLLoader.load(getClass().getResource("changeQuoteScr.fxml"));
+        stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

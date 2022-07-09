@@ -22,6 +22,6 @@
                 <TableColumn fx:id="date" prefWidth="74.6666259765625" text="Дата" />
             </columns>
         </TableView>
-        <Button fx:id="deleteButton" layoutX="353.0" layoutY="276.0" mnemonicParsing="false" onAction="#switchToCQ" text="OK" />
+        <Button fx:id="goToChange" layoutX="353.0" layoutY="276.0" mnemonicParsing="false" onAction="#switchToChange" text="OK" />
     </children>
 </AnchorPane>

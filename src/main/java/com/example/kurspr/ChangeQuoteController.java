@@ -51,7 +51,7 @@ public class ChangeQuoteController implements Initializable{
     private TableView<Quote> table;
 
     @FXML
-    private Button changeButton;
+    private Button goToChange;
 
     @FXML
     private TextField changing_id;
@@ -77,14 +77,13 @@ public class ChangeQuoteController implements Initializable{
         professor.setCellValueFactory(new PropertyValueFactory<Quote, Integer>("professor_id"));
         subject.setCellValueFactory(new PropertyValueFactory<Quote, Integer>("subject_id"));
         date.setCellValueFactory(new PropertyValueFactory<Quote, String>("date"));
-        //id_quote.setCellValueFactory(cellInteger -> cellInteger.getValue().getId());
         table.setItems(id_quotes);
     }
 
     @FXML
-    void switchToCQ(ActionEvent event) {
-        String del_id = changing_id.getText();
-        if (del_id.equals("")) {
+    void switchToChange(ActionEvent event) {
+        String change_id = changing_id.getText();
+        if (change_id.equals("")) {
             message.setText("Введите ID");
         }
         else {
@@ -94,7 +93,7 @@ public class ChangeQuoteController implements Initializable{
                 Connection connection = DriverManager.getConnection(
                         "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                         "std_1987_kurpr", "12345678");
-                String check = "SELECT access_to_quote(" + del_id + "," + id + ") AS res;";
+                String check = "SELECT access_to_quote(" + change_id + "," + id + ") AS res;";
                 Statement check_statement = connection.createStatement();
                 ResultSet res = check_statement.executeQuery(check);
                 res.next();
@@ -104,7 +103,7 @@ public class ChangeQuoteController implements Initializable{
                     message.setText("Введите корректное значение ID для доступной вам записи");
                 }
                 else {
-                    root = FXMLLoader.load(getClass().getResource("quotesManagingScr.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("pickQuoteChange.fxml"));
                     stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
                     scene = new Scene(root);
                     stage.setScene(scene);
