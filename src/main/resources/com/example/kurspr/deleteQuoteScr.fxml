@@ -11,7 +11,7 @@
     <children>
         <Button fx:id="backToQM" layoutX="175.0" layoutY="389.0" mnemonicParsing="false" onAction="#switchToQM" text="Назад" />
       <Label layoutX="24.0" layoutY="280.0" text="Введите ID цитаты, которую хотите удалить:" />
-      <TextField layoutX="283.0" layoutY="276.0" prefHeight="25.0" prefWidth="65.0" />
+      <TextField fx:id="deleting_id" layoutX="283.0" layoutY="276.0" prefHeight="25.0" prefWidth="65.0" />
       <Label fx:id="message" layoutX="138.0" layoutY="318.0" prefHeight="51.0" prefWidth="172.0" wrapText="true" />
       <TableView fx:id="table" layoutX="7.0" layoutY="25.0" prefHeight="216.0" prefWidth="387.0">
         <columns>
@@ -22,5 +22,6 @@
             <TableColumn fx:id="date" prefWidth="74.6666259765625" text="Дата" />
         </columns>
       </TableView>
+      <Button fx:id="deleteButton" layoutX="353.0" layoutY="276.0" mnemonicParsing="false" onAction="#deleteQuote" text="OK" />
     </children>
 </AnchorPane>

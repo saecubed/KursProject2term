@@ -11,15 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 import static com.example.kurspr.MainApplication.table_quotes;
@@ -52,6 +50,12 @@ public class DeleteQuoteController implements Initializable{
     @FXML
     private TableView<Quote> table;
 
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private TextField deleting_id;
+
 
     public static int id;
     ObservableList<Quote> id_quotes = FXCollections.observableArrayList(table_quotes.choose_by_user_id(id));
@@ -75,5 +79,78 @@ public class DeleteQuoteController implements Initializable{
         date.setCellValueFactory(new PropertyValueFactory<Quote, String>("date"));
         //id_quote.setCellValueFactory(cellInteger -> cellInteger.getValue().getId());
         table.setItems(id_quotes);
+    }
+
+    @FXML
+    void deleteQuote(ActionEvent event) {
+        String del_id = deleting_id.getText();
+        if (del_id.equals("")) {
+            message.setText("Введите ID");
+        }
+        else {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+//
+                Connection connection = DriverManager.getConnection(
+                        "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
+                        "std_1987_kurpr", "12345678");
+                String check = "SELECT access_to_quote(" + del_id + "," + id + ") AS res;";
+                Statement check_statement = connection.createStatement();
+                ResultSet res = check_statement.executeQuery(check);
+                res.next();
+                int result = res.getInt("res");
+
+                if (result != 1) {
+                    message.setText("Введите корректное значение ID для доступной вам записи");
+                }
+                else {
+                    String query = "DELETE FROM quotes WHERE id = ?";
+                    try {
+                        PreparedStatement statement = connection.prepareStatement(query);
+                        statement.setInt(1,  Integer. parseInt(del_id));
+                        statement.execute();
+                        message.setText("Запись удалена");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+                /*
+                String check = "SELECT access_to_quote(?," + id + ") AS res;";
+                try {
+                    PreparedStatement check_statement = connection.prepareStatement(check);
+                    check_statement.setInt(1,  Integer. parseInt(del_id));
+                    check_statement.execute();
+                    ResultSet check_result = check_statement.executeQuery(check);
+                    int res = check_result.getInt("res");
+
+                    if (res != 1) {
+                        message.setText("Введите корректный ID цитаты, к которой у Вас есть доступ");
+                    }
+                    else {
+                        String query = "DELETE FROM quotes WHERE id = ?";
+                        try {
+                            PreparedStatement statement = connection.prepareStatement(query);
+                            statement.setInt(1,  Integer. parseInt(del_id));
+                            statement.execute();
+                            message.setText("Запись удалена");
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                 */
+
+                connection.close();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        }
     }
 }
