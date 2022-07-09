@@ -28,10 +28,10 @@ public class AddQuoteController  {
     public static int id = com.example.kurspr.AuthController.id;
 
     @FXML
-    private Button backToAuth;
+    private DatePicker datePicker;
 
     @FXML
-    private TextField dateField;
+    private Button backToAuth;
 
     @FXML
     private Label dateText;
@@ -65,7 +65,7 @@ public class AddQuoteController  {
         String quote = quoteField.getText();
         String professor = profField.getText();
         String subject = subjectField.getText();
-        String date = dateField.getText();
+        String date = String.valueOf(datePicker.getValue());
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 //
@@ -105,8 +105,6 @@ public class AddQuoteController  {
                     quoteField.setText("");
                     profField.setText("");
                     subjectField.setText("");
-                    dateField.setText("");
-
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
