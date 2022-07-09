@@ -46,6 +46,7 @@ public class AuthController {
 
     @FXML
     public void enterButtonClicked(ActionEvent event) throws IOException {
+
         String login = loginField.getText();
         String password = passwordField.getText();
         id = -1;
@@ -71,6 +72,7 @@ public class AuthController {
             authFailed.setText("Введенные данные некорректны");
         }
         else {
+            com.example.kurspr.EnteredAuthController.id = id;
             switchToEntered(event);
         }
     }

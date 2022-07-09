@@ -34,7 +34,7 @@ public class ChangePasswordController {
     @FXML
     private TextField newPasswordField;
 
-    public static int id = com.example.kurspr.ProfileController.id;
+    public static int id;
 
     @FXML
     void setNewPassword(ActionEvent event) {

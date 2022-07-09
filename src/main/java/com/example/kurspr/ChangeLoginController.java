@@ -33,7 +33,7 @@ public class ChangeLoginController {
     @FXML
     private TextField newLoginField;
 
-    public static int id = com.example.kurspr.ProfileController.id;
+    public static int id;
 
     @FXML
     void setNewLogin(ActionEvent event) {

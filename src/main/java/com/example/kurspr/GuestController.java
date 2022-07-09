@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,6 +22,8 @@ import java.util.ResourceBundle;
 import static com.example.kurspr.MainApplication.table_quotes;
 
 public class GuestController implements Initializable {
+    @FXML
+    private Button backToMain;
     @FXML
     private TableView<Quote> table;
 

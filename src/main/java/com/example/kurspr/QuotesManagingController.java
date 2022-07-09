@@ -16,7 +16,7 @@ public class QuotesManagingController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public static int id = com.example.kurspr.EnteredAuthController.id;
+    public static int id;
     @FXML
     private Button addButton;
 
@@ -31,6 +31,7 @@ public class QuotesManagingController {
 
     @FXML
     void switchToAddQuote(ActionEvent event) throws IOException {
+        com.example.kurspr.AddQuoteController.id = id;
         root = FXMLLoader.load(getClass().getResource("addQuoteScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);
@@ -44,8 +45,13 @@ public class QuotesManagingController {
     }
 
     @FXML
-    void switchToDeleteQuote(ActionEvent event) {
-
+    void switchToDeleteQuote(ActionEvent event) throws IOException {
+        com.example.kurspr.DeleteQuoteController.id = id;
+        root = FXMLLoader.load(getClass().getResource("deleteQuoteScr.fxml"));
+        stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

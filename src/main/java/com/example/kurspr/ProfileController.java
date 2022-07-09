@@ -26,11 +26,12 @@ public class ProfileController {
     @FXML
     private Button changePassword;
 
-    public static int id = com.example.kurspr.EnteredAuthController.id;
+    public static int id;
 
 
     @FXML
     void switchToCL(ActionEvent event) throws IOException {
+        com.example.kurspr.ChangeLoginController.id = id;
         root = FXMLLoader.load(getClass().getResource("changeLoginScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);
@@ -40,6 +41,7 @@ public class ProfileController {
 
     @FXML
     void switchToCP(ActionEvent event) throws IOException {
+        com.example.kurspr.ChangePasswordController.id = id;
         root = FXMLLoader.load(getClass().getResource("changePasswordScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);

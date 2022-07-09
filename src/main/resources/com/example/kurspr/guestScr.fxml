@@ -10,10 +10,10 @@
       <Button fx:id="backToMain" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToMain" text="На главный экран" />
       <TableView fx:id="table" layoutX="10.0" layoutY="48.0" prefHeight="386.0" prefWidth="379.0">
         <columns>
-          <TableColumn fx:id="quote" prefWidth="124.66665649414062" text="Цитата" />
-          <TableColumn fx:id="professor_id" prefWidth="115.33331298828125" text="Преподаватель" />
-            <TableColumn fx:id="subject_id" prefWidth="76.66668701171875" text="Предмет" />
-            <TableColumn fx:id="date" prefWidth="56.6666259765625" text="Дата" />
+          <TableColumn fx:id="quote" prefWidth="101.33334350585938" text="Цитата" />
+          <TableColumn fx:id="professor_id" prefWidth="106.66668701171875" text="Преподаватель" />
+            <TableColumn fx:id="subject_id" prefWidth="80.6666259765625" text="Предмет" />
+            <TableColumn fx:id="date" prefWidth="85.3333740234375" text="Дата" />
         </columns>
       </TableView>
    </children>

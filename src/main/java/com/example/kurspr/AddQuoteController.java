@@ -25,7 +25,7 @@ public class AddQuoteController  {
     private Scene scene;
     private Parent root;
 
-    public static int id = com.example.kurspr.AuthController.id;
+    public static int id;
 
     @FXML
     private DatePicker datePicker;

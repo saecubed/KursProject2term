@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -48,7 +49,10 @@ public class EnteredAuthController implements Initializable {
     @FXML
     private Button profileManagement;
 
-    public static int id = com.example.kurspr.AuthController.id;
+    @FXML
+    private Label idText;
+
+    public static int id;
 
     ObservableList<Quote> guest_quotes = FXCollections.observableArrayList(table_quotes.quotes);
 
@@ -63,6 +67,7 @@ public class EnteredAuthController implements Initializable {
 
     @FXML
     void switchToQM(ActionEvent event) throws IOException {
+        com.example.kurspr.QuotesManagingController.id = id;
         root = FXMLLoader.load(getClass().getResource("quotesManagingScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);
@@ -72,6 +77,7 @@ public class EnteredAuthController implements Initializable {
 
     @FXML
     void switchToPM(ActionEvent event) throws IOException {
+        com.example.kurspr.ProfileController.id = id;
         root = FXMLLoader.load(getClass().getResource("profileScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);
@@ -86,5 +92,11 @@ public class EnteredAuthController implements Initializable {
         quote.setCellValueFactory(new PropertyValueFactory<Quote, String>("quote"));
         subject_id.setCellValueFactory(new PropertyValueFactory<Quote, Integer>("subject_id"));
         table.setItems(guest_quotes);
+    }
+
+    @FXML
+    void showId(ActionEvent event) {
+        id = com.example.kurspr.AuthController.id;
+        idText.setText(String.valueOf(id));
     }
 }
