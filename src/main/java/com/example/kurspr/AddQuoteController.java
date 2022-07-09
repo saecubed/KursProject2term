@@ -76,6 +76,12 @@ public class AddQuoteController  {
             if (quote.equals("") || professor.equals("") || subject.equals("") || date.equals("")) {
                 message.setText("Заполните все поля");
             }
+            else if (getProf(professor) == -1) {
+                message.setText("Такого преподавателя нет");
+            }
+            else if (getSub(subject) == -1) {
+                message.setText("Такого предмета нет");
+            }
             else{
                 String query = "INSERT INTO quotes (id, quote, professor_id, subject_id, date, publisher_id) VALUES (?, ?, ?, ?, ?, ?);";
                 try {
@@ -83,8 +89,8 @@ public class AddQuoteController  {
                             Statement.RETURN_GENERATED_KEYS);
                     statement.setNull(1, Types.INTEGER);
                     statement.setString(2, quote);
-                    statement.setInt(3, 1);
-                    statement.setInt(4, 1);
+                    statement.setInt(3, getProf(professor));
+                    statement.setInt(4, getSub(subject));
                     statement.setString(5, date);
                     statement.setInt(6, id);
                     statement.execute();
@@ -94,7 +100,7 @@ public class AddQuoteController  {
                     if (generatedKeys.next()) {
                         genKey = generatedKeys.getInt(1);
                     }
-                    table_quotes.quotes.add(new Quote(genKey,quote,1,1, date, id));
+                    table_quotes.quotes.add(new Quote(genKey,quote,getProf(professor),getSub(subject), date, id));
                     message.setText("Цитата успешно добавлена");
                     quoteField.setText("");
                     profField.setText("");
@@ -120,6 +126,86 @@ public class AddQuoteController  {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    int getProf(String full_name) {
+        int id = -1;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
+                    "std_1987_kurpr", "12345678");
+//
+            Statement statement = connection.createStatement();
+            String query = "SELECT id FROM professors WHERE full_name = '" + full_name + "';";
+            ResultSet result = statement.executeQuery(query);
+            result.next();
+            id = result.getInt("id");
+            /*
+            try {
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, full_name);
+                statement.execute();
+                ResultSet result = statement.executeQuery(query);
+                int id = -1;
+                id = result.getInt("id");
+                if (id == -1) {
+                    res = false;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+             */
+
+            connection.close();
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return id;
+    }
+
+    int getSub(String subject_name) {
+        int id = -1;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
+                    "std_1987_kurpr", "12345678");
+//
+            Statement statement = connection.createStatement();
+            String query = "SELECT id FROM subjects WHERE subject_name = '" + subject_name + "';";
+            ResultSet result = statement.executeQuery(query);
+            result.next();
+            id = result.getInt("id");
+            /*
+            try {
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, subject_name);
+                statement.execute();
+                ResultSet result = statement.executeQuery(query);
+                int id = -1;
+                id = result.getInt("id");
+                if (id == -1) {
+                    res = false;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+         */
+
+            connection.close();
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return id;
     }
 
 }
