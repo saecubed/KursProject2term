@@ -63,7 +63,7 @@ public class EnteredAuthController implements Initializable {
 
     @FXML
     void switchToQM(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("authScr.fxml"));
+        root = FXMLLoader.load(getClass().getResource("quotesManagingScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);
         stage.setScene(scene);
