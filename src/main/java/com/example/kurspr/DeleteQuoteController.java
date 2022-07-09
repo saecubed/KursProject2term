@@ -107,7 +107,7 @@ public class DeleteQuoteController implements Initializable{
                     String query = "DELETE FROM quotes WHERE id = ?";
                     try {
                         PreparedStatement statement = connection.prepareStatement(query);
-                        statement.setInt(1,  Integer. parseInt(del_id));
+                        statement.setInt(1,  Integer.parseInt(del_id));
                         statement.execute();
                         message.setText("Запись удалена");
                     } catch (SQLException e) {
@@ -151,6 +151,7 @@ public class DeleteQuoteController implements Initializable{
             catch(Exception e){
                 System.out.println(e);
             }
+            id_quotes.removeIf(Item -> (Item.id == Integer.parseInt(del_id)));
         }
     }
 }
