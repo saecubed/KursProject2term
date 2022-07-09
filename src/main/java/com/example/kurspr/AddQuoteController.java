@@ -73,7 +73,7 @@ public class AddQuoteController  {
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
 //
-            if (quote.equals("") || professor.equals("") || subject.equals("") || date.equals("")) {
+            if (quote.equals("") || professor.equals("") || subject.equals("") || datePicker.equals("")) {
                 message.setText("Заполните все поля");
             }
             else if (getProf(professor) == -1) {
