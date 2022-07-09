@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kurspr.DeleteQuoteController">
+    <children>
+        <Button fx:id="backToQM" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToQM" text="Назад" />
+        <TableView fx:id="table" layoutX="10.0" layoutY="48.0" prefHeight="205.0" prefWidth="379.0">
+            <columns>
+                <TableColumn fx:id="quote" prefWidth="95.99996948242188" text="Цитата" />
+                <TableColumn fx:id="professor_id" prefWidth="110.0" text="Преподаватель" />
+                <TableColumn fx:id="subject_id" prefWidth="77.3333740234375" text="Предмет" />
+                <TableColumn fx:id="date" prefWidth="92.0" text="Дата" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
