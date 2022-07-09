@@ -39,7 +39,7 @@ public class Quotes {
         }
     }
 
-    public ArrayList<Quote> choose_by_id (int user_id) {
+    public ArrayList<Quote> choose_by_user_id (int user_id) {
         ArrayList<Quote> id_quotes = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -49,7 +49,7 @@ public class Quotes {
                     "std_1987_kurpr", "12345678");
 //
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM quotes WHERE publisher_id = " + user_id + ";" ;
+            String query = "SELECT id, quote, professor_id, subject_id, date, publisher_id FROM (SELECT *, IF (access_to_quote(quotes.id, " + user_id + ") = 1, 1, 0) as res FROM quotes WHERE access_to_quote(quotes.id, " + user_id + ") = 1) tmp;" ;
             ResultSet result = statement.executeQuery(query);
 //
             while(result.next()){

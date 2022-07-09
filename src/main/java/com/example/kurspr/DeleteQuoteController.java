@@ -44,7 +44,7 @@ public class DeleteQuoteController implements Initializable {
 
 
     public static int id;
-    ObservableList<Quote> id_quotes = FXCollections.observableArrayList(table_quotes.choose_by_id(id));
+    ObservableList<Quote> id_quotes = FXCollections.observableArrayList(table_quotes.choose_by_user_id(id));
 
 
     @FXML
