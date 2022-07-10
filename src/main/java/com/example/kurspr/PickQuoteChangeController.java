@@ -1,7 +1,5 @@
 package com.example.kurspr;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -115,12 +113,24 @@ public class PickQuoteChangeController implements Initializable{
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                Statement new_statement = connection.createStatement();
+                String new_query = "SELECT * FROM quotes WHERE id = " + qt_id;
+                ResultSet result = new_statement.executeQuery(new_query);
+                String quote = result.getString("quote");
+                int professor_id = result.getInt("professor_id");
+                int subject_id = result.getInt("subject_id");
+                int publisher_id = result.getInt("publisher_id");
+                table_quotes.quotes.removeIf(Item -> (Item.id == qt_id));
+                table_quotes.quotes.add(new Quote(qt_id, quote, professor_id, subject_id, date, publisher_id));
+
             }
             connection.close();
         }
         catch(Exception e){
             System.out.println(e);
         }
+
+
     }
 
     @FXML
@@ -150,6 +160,15 @@ public class PickQuoteChangeController implements Initializable{
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                Statement new_statement = connection.createStatement();
+                String new_query = "SELECT * FROM quotes WHERE id = " + qt_id;
+                ResultSet result = new_statement.executeQuery(new_query);
+                String quote = result.getString("quote");
+                String date = result.getString("date");
+                int subject_id = result.getInt("subject_id");
+                int publisher_id = result.getInt("publisher_id");
+                table_quotes.quotes.removeIf(Item -> (Item.id == qt_id));
+                table_quotes.quotes.add(new Quote(qt_id, quote, getProf(name), subject_id, date, publisher_id));
             }
             connection.close();
         }
@@ -184,6 +203,15 @@ public class PickQuoteChangeController implements Initializable{
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                Statement new_statement = connection.createStatement();
+                String new_query = "SELECT * FROM quotes WHERE id = " + qt_id;
+                ResultSet result = new_statement.executeQuery(new_query);
+                int professor_id = result.getInt("professor_id");
+                String date = result.getString("date");
+                int subject_id = result.getInt("subject_id");
+                int publisher_id = result.getInt("publisher_id");
+                table_quotes.quotes.removeIf(Item -> (Item.id == qt_id));
+                table_quotes.quotes.add(new Quote(qt_id, new_quote, professor_id, subject_id, date, publisher_id));
             }
             connection.close();
         }
@@ -219,6 +247,15 @@ public class PickQuoteChangeController implements Initializable{
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                Statement new_statement = connection.createStatement();
+                String new_query = "SELECT * FROM quotes WHERE id = " + qt_id;
+                ResultSet result = new_statement.executeQuery(new_query);
+                String quote = result.getString("quote");
+                String date = result.getString("date");
+                int professor_id = result.getInt("professor_id");
+                int publisher_id = result.getInt("publisher_id");
+                table_quotes.quotes.removeIf(Item -> (Item.id == qt_id));
+                table_quotes.quotes.add(new Quote(qt_id, quote, professor_id, getSub(name), date, publisher_id));
             }
             connection.close();
         }
@@ -241,24 +278,6 @@ public class PickQuoteChangeController implements Initializable{
             ResultSet result = statement.executeQuery(query);
             result.next();
             id = result.getInt("id");
-            /*
-            try {
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, full_name);
-                statement.execute();
-                ResultSet result = statement.executeQuery(query);
-                int id = -1;
-                id = result.getInt("id");
-                if (id == -1) {
-                    res = false;
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-             */
-
             connection.close();
         }
         catch(Exception e){
@@ -281,24 +300,6 @@ public class PickQuoteChangeController implements Initializable{
             ResultSet result = statement.executeQuery(query);
             result.next();
             id = result.getInt("id");
-            /*
-            try {
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, subject_name);
-                statement.execute();
-                ResultSet result = statement.executeQuery(query);
-                int id = -1;
-                id = result.getInt("id");
-                if (id == -1) {
-                    res = false;
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-         */
-
             connection.close();
         }
         catch(Exception e){

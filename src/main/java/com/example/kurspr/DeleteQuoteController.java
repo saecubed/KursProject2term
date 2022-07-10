@@ -77,7 +77,6 @@ public class DeleteQuoteController implements Initializable{
         professor.setCellValueFactory(new PropertyValueFactory<Quote, Integer>("professor_id"));
         subject.setCellValueFactory(new PropertyValueFactory<Quote, Integer>("subject_id"));
         date.setCellValueFactory(new PropertyValueFactory<Quote, String>("date"));
-        //id_quote.setCellValueFactory(cellInteger -> cellInteger.getValue().getId());
         table.setItems(id_quotes);
     }
 
@@ -114,44 +113,12 @@ public class DeleteQuoteController implements Initializable{
                         e.printStackTrace();
                     }
                 }
-
-
-                /*
-                String check = "SELECT access_to_quote(?," + id + ") AS res;";
-                try {
-                    PreparedStatement check_statement = connection.prepareStatement(check);
-                    check_statement.setInt(1,  Integer. parseInt(del_id));
-                    check_statement.execute();
-                    ResultSet check_result = check_statement.executeQuery(check);
-                    int res = check_result.getInt("res");
-
-                    if (res != 1) {
-                        message.setText("Введите корректный ID цитаты, к которой у Вас есть доступ");
-                    }
-                    else {
-                        String query = "DELETE FROM quotes WHERE id = ?";
-                        try {
-                            PreparedStatement statement = connection.prepareStatement(query);
-                            statement.setInt(1,  Integer. parseInt(del_id));
-                            statement.execute();
-                            message.setText("Запись удалена");
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-                 */
-
                 connection.close();
             }
             catch(Exception e){
                 System.out.println(e);
             }
-            id_quotes.removeIf(Item -> (Item.id == Integer.parseInt(del_id)));
+            table_quotes.quotes.removeIf(Item -> (Item.id == Integer.parseInt(del_id)));
         }
     }
 }
