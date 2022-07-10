@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
+import static com.example.kurspr.MainApplication.table_users;
+
 public class ChangeLoginController {
     private Stage stage;
     private Scene scene;
@@ -71,7 +73,15 @@ public class ChangeLoginController {
                 }
                 message.setText("Логин успешно изменен");
                 newLoginField.setText(" ");
+                Statement new_statement = connection.createStatement();
+                String new_query = "SELECT * FROM users WHERE id = " + id;
+                ResultSet new_result = new_statement.executeQuery(new_query);
+                String new_password = new_result.getString("password");
+                int new_role_id = new_result.getInt("role_id");
+                table_users.users.removeIf(Item -> (Item.id == id));
+                table_users.users.add(new User (id, new_login, new_password, new_role_id));
             }
+
             connection.close();
         }
         catch(Exception e){

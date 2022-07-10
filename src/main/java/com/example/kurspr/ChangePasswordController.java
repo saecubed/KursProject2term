@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
+import static com.example.kurspr.MainApplication.table_quotes;
+import static com.example.kurspr.MainApplication.table_users;
+
 
 public class ChangePasswordController {
     private Stage stage;
@@ -62,11 +65,19 @@ public class ChangePasswordController {
                 }
                 message.setText("Пароль успешно изменен");
                 newPasswordField.setText(" ");
+                Statement new_statement = connection.createStatement();
+                String new_query = "SELECT * FROM users WHERE id = " + id;
+                ResultSet result = new_statement.executeQuery(new_query);
+                String new_login = result.getString("login");
+                int new_role_id = result.getInt("role_id");
+                table_users.users.removeIf(Item -> (Item.id == id));
+                table_users.users.add(new User (id, new_login, new_password, new_role_id));
                 connection.close();
             }
             catch(Exception e){
                 System.out.println(e);
             }
+
         }
     }
 
