@@ -19,28 +19,20 @@ public class RegisterController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
     @FXML
     private Button RegisterButton;
-
     @FXML
     private Button backToMain;
-
     @FXML
     private Label regOk;
-
     @FXML
     private TextField loginField;
-
     @FXML
     private Label loginText;
-
     @FXML
     private TextField passwordField;
-
     @FXML
     private Label passwordText;
-
     @FXML
     void register(ActionEvent event) {
         String login = loginField.getText();
@@ -48,24 +40,9 @@ public class RegisterController {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
-            /*
-            String check_login = "SELECT COUNT(id) FROM users WHERE login = ?;";
-            int count = -1;
-            try {
-                PreparedStatement check = connection.prepareStatement(check_login);
-                check.setString(1, login);
-                ResultSet res = check.executeQuery(check_login);
-                count = res.getInt("COUNT(id)");
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-             */
             int count = -1;
             Statement stat = connection.createStatement();
             String check = "SELECT COUNT(id) FROM users WHERE login = '" + login + "';";
@@ -106,7 +83,6 @@ public class RegisterController {
                     int ver_id = result.getInt("verificator_id");
                     //////////
 
-                    //"INSERT INTO verificators (verificator_id, controlled_id) VALUES (?,?);"
                     Statement statement1 = connection.createStatement();
                     statement1.executeUpdate("INSERT INTO verificators (verificator_id, controlled_id) VALUES (" + ver_id + ", " + genKey + ");");
                     /////////

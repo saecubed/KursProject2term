@@ -1,7 +1,5 @@
 package com.example.kurspr;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,38 +26,28 @@ public class DeleteQuoteController implements Initializable{
     private Parent root;
     @FXML
     private Button backToQM;
-
     @FXML
     private TableColumn<Quote, String> date;
-
     @FXML
     private TableColumn<Quote, Integer> id_quote;
-
     @FXML
     private Label message;
-
     @FXML
     private TableColumn<Quote, Integer> professor;
-
     @FXML
     private TableColumn<Quote, String> quote;
-
     @FXML
     private TableColumn<Quote, Integer> subject;
-
     @FXML
     private TableView<Quote> table;
-
     @FXML
     private Button deleteButton;
-
     @FXML
     private TextField deleting_id;
 
 
     public static int id;
     ObservableList<Quote> id_quotes = FXCollections.observableArrayList(table_quotes.choose_by_user_id(id));
-
 
     @FXML
     void switchToQM(ActionEvent event) throws IOException {
@@ -89,7 +77,6 @@ public class DeleteQuoteController implements Initializable{
         else {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
-//
                 Connection connection = DriverManager.getConnection(
                         "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                         "std_1987_kurpr", "12345678");

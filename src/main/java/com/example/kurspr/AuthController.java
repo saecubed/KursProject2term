@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -53,11 +52,9 @@ public class AuthController {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             Statement statement = connection.createStatement();
             String query = "SELECT id FROM users WHERE login = '" + login + "' AND password = '" + password + "';";
             ResultSet result = statement.executeQuery(query);

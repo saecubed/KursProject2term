@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
-import static com.example.kurspr.MainApplication.table_quotes;
-
 public class CountQuotesController {
     private Stage stage;
     private Scene scene;
@@ -22,16 +20,12 @@ public class CountQuotesController {
     public static int id;
     @FXML
     private Button countButton;
-
     @FXML
     private Button goToQM;
-
     @FXML
     private Label res1;
-
     @FXML
     private Label res2;
-
     @FXML
     private Label res3;
 
@@ -39,11 +33,9 @@ public class CountQuotesController {
     void countQuotes(ActionEvent event) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             Statement statement1 = connection.createStatement();
             String query1 = "SELECT COUNT(id) as res FROM quotes WHERE publisher_id = " + id + ";";
             ResultSet result1 = statement1.executeQuery(query1);

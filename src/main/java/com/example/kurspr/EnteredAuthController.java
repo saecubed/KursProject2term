@@ -27,28 +27,21 @@ public class EnteredAuthController implements Initializable {
     private Button backToAuth;
     @FXML
     private TableView<Quote> table;
-
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
     private TableColumn<Quote, String> date;
-
     @FXML
     private TableColumn<Quote, Integer> professor_id;
-
     @FXML
     private TableColumn<Quote, String> quote;
-
     @FXML
     private TableColumn<Quote, Integer> subject_id;
-
     @FXML
     private Button quotesManagement;
-
     @FXML
     private Button profileManagement;
-
     @FXML
     private Label idText;
 

@@ -1,22 +1,14 @@
 package com.example.kurspr;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.URL;
 import java.sql.*;
-import java.util.ResourceBundle;
 
 import static com.example.kurspr.MainApplication.table_quotes;
 
@@ -26,7 +18,6 @@ public class AddQuoteController  {
     private Parent root;
 
     public static int id;
-
     @FXML
     private DatePicker datePicker;
 
@@ -38,13 +29,10 @@ public class AddQuoteController  {
 
     @FXML
     private TextField profField;
-
     @FXML
     private Label profText;
-
     @FXML
     private Button publish_button;
-
     @FXML
     private TextField quoteField;
 
@@ -68,11 +56,9 @@ public class AddQuoteController  {
         String date = String.valueOf(datePicker.getValue());
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             if (quote.equals("") || professor.equals("") || subject.equals("") || datePicker.equals("")) {
                 message.setText("Заполните все поля");
             }
@@ -130,33 +116,14 @@ public class AddQuoteController  {
         int id = -1;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             Statement statement = connection.createStatement();
             String query = "SELECT id FROM professors WHERE full_name = '" + full_name + "';";
             ResultSet result = statement.executeQuery(query);
             result.next();
             id = result.getInt("id");
-            /*
-            try {
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, full_name);
-                statement.execute();
-                ResultSet result = statement.executeQuery(query);
-                int id = -1;
-                id = result.getInt("id");
-                if (id == -1) {
-                    res = false;
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-             */
 
             connection.close();
         }
@@ -170,34 +137,14 @@ public class AddQuoteController  {
         int id = -1;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             Statement statement = connection.createStatement();
             String query = "SELECT id FROM subjects WHERE subject_name = '" + subject_name + "';";
             ResultSet result = statement.executeQuery(query);
             result.next();
             id = result.getInt("id");
-            /*
-            try {
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, subject_name);
-                statement.execute();
-                ResultSet result = statement.executeQuery(query);
-                int id = -1;
-                id = result.getInt("id");
-                if (id == -1) {
-                    res = false;
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-         */
-
             connection.close();
         }
         catch(Exception e){

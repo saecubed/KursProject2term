@@ -43,17 +43,14 @@ public class ChangeLoginController {
         int count = -1;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             Statement statement = connection.createStatement();
             String query = "SELECT COUNT(id) FROM users WHERE login = '" + new_login + "';";
             ResultSet result = statement.executeQuery(query);
             result.next();
             count = result.getInt("COUNT(id)");
-            //connection.close();
             if (count != 0) {
                 message.setText("Этот логин уже занят");
             }

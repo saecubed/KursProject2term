@@ -17,22 +17,16 @@ public class QuotesManagingController {
     private Scene scene;
     private Parent root;
     public static int id;
-
     @FXML
     private Button CountButton;
-
     @FXML
     private Button addButton;
-
     @FXML
     private Button backToEnteredAuth;
-
     @FXML
     private Button changeButton;
-
     @FXML
     private Button deleteButton;
-
     @FXML
     void switchToAddQuote(ActionEvent event) throws IOException {
         com.example.kurspr.AddQuoteController.id = id;

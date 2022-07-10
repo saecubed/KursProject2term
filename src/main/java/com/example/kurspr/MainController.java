@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,13 +21,10 @@ public class MainController {
     private Parent root;
     @FXML
     private Button authButton;
-
     @FXML
     private Button guestButton;
-
     @FXML
     private Button registerButton;
-
     @FXML
     public void switchToAuth(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("authScr.fxml"));

@@ -26,28 +26,20 @@ public class PickQuoteChangeController implements Initializable{
     private Parent root;
     @FXML
     private Button backToQC;
-
     @FXML
     private TableColumn<Quote, String> date;
-
     @FXML
     private TableColumn<Quote, Integer> id_quote;
-
     @FXML
     private Label message;
-
     @FXML
     private TableColumn<Quote, Integer> professor;
-
     @FXML
     private TableColumn<Quote, String> quote;
-
     @FXML
     private TableColumn<Quote, Integer> subject;
-
     @FXML
     private TableView<Quote> table;
-
     @FXML
     private Button quoteButton;
     @FXML
@@ -64,7 +56,6 @@ public class PickQuoteChangeController implements Initializable{
     private TextField subField;
     @FXML
     private DatePicker datePicker;
-
 
     public static int id;
     public static int qt_id;
@@ -94,11 +85,9 @@ public class PickQuoteChangeController implements Initializable{
         String date = String.valueOf(datePicker.getValue());
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             if (date.equals("")) {
                 message.setText("Заполните поле");
             }
@@ -138,11 +127,9 @@ public class PickQuoteChangeController implements Initializable{
         String name = profField.getText();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             if (name.equals("")) {
                 message.setText("Заполните поле");
             }
@@ -183,11 +170,9 @@ public class PickQuoteChangeController implements Initializable{
         String new_quote = quoteField.getText();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             if (new_quote.equals("")) {
                 message.setText("Заполните поле");
             }
@@ -225,11 +210,9 @@ public class PickQuoteChangeController implements Initializable{
         String name = subField.getText();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             if (name.equals("")) {
                 message.setText("Заполните поле");
             }
@@ -268,11 +251,9 @@ public class PickQuoteChangeController implements Initializable{
         int id = -1;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             Statement statement = connection.createStatement();
             String query = "SELECT id FROM professors WHERE full_name = '" + full_name + "';";
             ResultSet result = statement.executeQuery(query);
@@ -290,11 +271,9 @@ public class PickQuoteChangeController implements Initializable{
         int id = -1;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
-//
             Statement statement = connection.createStatement();
             String query = "SELECT id FROM subjects WHERE subject_name = '" + subject_name + "';";
             ResultSet result = statement.executeQuery(query);

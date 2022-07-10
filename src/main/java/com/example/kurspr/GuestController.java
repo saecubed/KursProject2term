@@ -26,23 +26,17 @@ public class GuestController implements Initializable {
     private Button backToMain;
     @FXML
     private TableView<Quote> table;
-
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
     private TableColumn<Quote, String> date;
-
     @FXML
     private TableColumn<Quote, Integer> professor_id;
-
     @FXML
     private TableColumn<Quote, String> quote;
-
     @FXML
     private TableColumn<Quote, Integer> subject_id;
-
-
     ObservableList<Quote> guest_quotes = FXCollections.observableArrayList(table_quotes.quotes);
 
     @FXML

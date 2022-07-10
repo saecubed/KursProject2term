@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
-import static com.example.kurspr.MainApplication.table_quotes;
 import static com.example.kurspr.MainApplication.table_users;
 
 
@@ -24,16 +23,12 @@ public class ChangePasswordController {
     private Parent root;
     @FXML
     private Button OkNewPassword;
-
     @FXML
     private Button backToProfile;
-
     @FXML
     private Label enterPasswordText;
-
     @FXML
     private Label message;
-
     @FXML
     private TextField newPasswordField;
 
