@@ -17,6 +17,10 @@ public class QuotesManagingController {
     private Scene scene;
     private Parent root;
     public static int id;
+
+    @FXML
+    private Button CountButton;
+
     @FXML
     private Button addButton;
 
@@ -62,6 +66,16 @@ public class QuotesManagingController {
     @FXML
     void switchToEnteredAuth(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("enteredAuthScr.fxml"));
+        stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void switchToCountQuotes(ActionEvent event) throws IOException {
+        com.example.kurspr.CountQuotesController.id = id;
+        root = FXMLLoader.load(getClass().getResource("countQuotesScr.fxml"));
         stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
         scene = new Scene(root);
         stage.setScene(scene);

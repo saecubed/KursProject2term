@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kurspr.CountQuotesController">
+   <children>
+      <Button fx:id="countButton" layoutX="87.0" layoutY="28.0" mnemonicParsing="false" onAction="#countQuotes" text="Посчитать количество внесенных цитат" />
+      <Button fx:id="goToQM" layoutX="180.0" layoutY="396.0" mnemonicParsing="false" onAction="#switchToQM" text="Назад" />
+      <Label layoutX="59.0" layoutY="90.0" text="1 способ:" />
+      <Label fx:id="res1" layoutX="152.0" layoutY="90.0" prefHeight="17.0" prefWidth="67.0" />
+      <Label layoutX="59.0" layoutY="127.0" text="2 способ:" />
+      <Label fx:id="res2" layoutX="152.0" layoutY="127.0" prefHeight="17.0" prefWidth="67.0" />
+      <Label layoutX="59.0" layoutY="162.0" text="3 способ:" />
+      <Label fx:id="res3" layoutX="152.0" layoutY="162.0" prefHeight="17.0" prefWidth="67.0" />
+   </children>
+</AnchorPane>
