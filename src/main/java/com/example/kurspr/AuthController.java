@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import static com.example.kurspr.MainApplication.table_users;
 
 
 public class AuthController {
@@ -49,7 +50,7 @@ public class AuthController {
         String login = loginField.getText();
         String password = passwordField.getText();
         id = -1;
-
+        /*
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(
@@ -67,6 +68,28 @@ public class AuthController {
         }
         if (id == -1) {
             authFailed.setText("Введенные данные некорректны");
+        }
+        else {
+            com.example.kurspr.EnteredAuthController.id = id;
+            switchToEntered(event);
+        }
+
+         */
+        boolean access = true;
+        for (int i = 0; i < table_users.users.size(); i++) {
+            if (table_users.users.get(i).login.equals(login) && table_users.users.get(i).hash_password.equals(String.valueOf(password.hashCode()))) {
+                access = true;
+                id = table_users.users.get(i).id;
+                authFailed.setText("true");
+                break;
+            }
+            else {
+                access = false;
+
+            }
+        }
+        if (access == false) {
+            authFailed.setText("Введенные данные некорректны ");
         }
         else {
             com.example.kurspr.EnteredAuthController.id = id;
