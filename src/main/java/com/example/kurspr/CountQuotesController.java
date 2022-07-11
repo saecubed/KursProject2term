@@ -36,6 +36,7 @@ public class CountQuotesController {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1987_kurpr",
                     "std_1987_kurpr", "12345678");
+
             Statement statement1 = connection.createStatement();
             String query1 = "SELECT COUNT(id) as res FROM quotes WHERE publisher_id = " + id + ";";
             ResultSet result1 = statement1.executeQuery(query1);
@@ -46,16 +47,24 @@ public class CountQuotesController {
             Statement statement2 = connection.createStatement();
             String query2 = "SELECT SUM(IF (publisher_id = " + id + ", 1, 0)) as res FROM quotes WHERE publisher_id = " + id + " GROUP BY publisher_id;";
             ResultSet result2 = statement2.executeQuery(query2);
-            result2.next();
-            int count2 = result2.getInt("res");
-            res2.setText(String.valueOf(count2));
+            if (result2.next()) {
+                int count2 = result2.getInt("res");
+                res2.setText(String.valueOf(count2));
+            }
+            else {
+                res2.setText("0");
+            }
 
             Statement statement3 = connection.createStatement();
             String query3 = "SELECT COUNT(id) as res FROM quotes WHERE publisher_id IN (SELECT publisher_id FROM quotes WHERE publisher_id = " + id + ");";
             ResultSet result3 = statement3.executeQuery(query3);
-            result3.next();
-            int count3 = result3.getInt("res");
-            res3.setText(String.valueOf(count3));
+            if(result3.next()) {
+                int count3 = result3.getInt("res");
+                res3.setText(String.valueOf(count3));
+            }
+            else {
+                res3.setText("0");
+            }
 
             connection.close();
         }
